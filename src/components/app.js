@@ -6,7 +6,7 @@ import LandingPage from './landing-page';
 import Dashboard from './dashboard';
 import RegistrationPage from './registration-page';
 import {refreshAuthToken} from '../actions/auth';
-import Board from 'react-trello/dist/components/Board';
+import {BoardPage} from './board-page'
 
 export class App extends React.Component {
     componentDidUpdate(prevProps) {
@@ -45,7 +45,7 @@ export class App extends React.Component {
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/register" component={RegistrationPage} />
-                <Route exact path="/board" component={Board} />
+                <Route exact path="/board" component={BoardPage} />
             </div>
         );
     }

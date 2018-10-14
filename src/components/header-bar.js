@@ -1,34 +1,51 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {clearAuth} from '../actions/auth';
-import {clearAuthToken} from '../local-storage';
-import {APP_NAME} from '../config';
+import React from "react";
+import { connect } from "react-redux";
+import { clearAuth } from "../actions/auth";
+import { clearAuthToken } from "../local-storage";
+import { APP_NAME } from "../config";
+import { Navbar, NavbarBrand, Nav, NavItem, Button } from "reactstrap";
 
 export class HeaderBar extends React.Component {
-    logOut() {
-        this.props.dispatch(clearAuth());
-        clearAuthToken();
-    }
+  logOut() {
+    this.props.dispatch(clearAuth());
+    clearAuthToken();
+  }
 
-    render() {
-        // Only render the log out button if we are logged in
-        let logOutButton;
+  render() {
+    // Only render the log out button if user is logged in
+    let logOutButton;
         if (this.props.loggedIn) {
             logOutButton = (
-                <button onClick={() => this.logOut()}>Log out</button>
+                <Button
+                color="primary"
+                onClick={() => this.logOut()}
+                disabled={!this.props.loggedIn}
+              >
+              Log Out
+              </Button>
+
             );
         }
-        return (
-            <div className="header-bar">
-                <h1>{APP_NAME}</h1>
-                {logOutButton}
-            </div>
-        );
-    }
+    return (
+        // make card for login form
+      <div>
+        <Navbar>
+          <Nav>
+            <NavItem>
+              <NavbarBrand href="/">{APP_NAME}</NavbarBrand>
+            </NavItem>
+            {logOutButton}
+            <NavItem>
+            </NavItem>
+          </Nav>
+        </Navbar>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = state => ({
-    loggedIn: state.auth.currentUser !== null
+  loggedIn: state.auth.currentUser !== null
 });
 
 export default connect(mapStateToProps)(HeaderBar);

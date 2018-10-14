@@ -15,11 +15,12 @@ export const fetchProtectedDataError = error => ({
 
 export const fetchProtectedData = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    return fetch(`${API_BASE_URL}/protected`, {
+    return fetch(`${API_BASE_URL}/projects`, {
         method: 'GET',
         headers: {
             // Provide our auth token as credentials
-            Authorization: `Bearer ${authToken}`
+            Authorization: `Bearer ${authToken}`,
+            Accept: 'application/vnd.api.v1+json'
         }
     })
         .then(res => normalizeResponseErrors(res))
