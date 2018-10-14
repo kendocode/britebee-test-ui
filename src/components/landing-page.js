@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
+import {APP_NAME} from '../config';
 
 import LoginForm from './login-form';
 
@@ -12,7 +13,8 @@ export function LandingPage(props) {
 
     return (
         <div className="home">
-            <h2>Welcome to Foo App</h2>
+            <h2>Welcome to {APP_NAME}</h2><br />
+            <h4>Please sign in</h4>
             <LoginForm />
             <Link to="/register">Register</Link>
         </div>

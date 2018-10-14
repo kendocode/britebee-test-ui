@@ -1,10 +1,17 @@
 {
   "clean_urls": true,
   "logging": {
-      "error": "info"
+    "error": "info"
   },
   "root": "build/",
   "routes": {
-      "/**": "index.html"
+    "/**": "index.html"
+  },
+  "headers": {
+    "/**": {
+      "Accept": "application/vnd.api.v1+json",
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*"
+    }
   }
 }

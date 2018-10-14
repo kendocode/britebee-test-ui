@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
+import {APP_NAME} from '../config';
 
 import RegistrationForm from './registration-form';
 
@@ -12,7 +13,7 @@ export function RegistrationPage(props) {
     }
     return (
         <div className="home">
-            <h2>Register for Foo App</h2>
+            <h2>{`${APP_NAME}`}</h2>
             <RegistrationForm />
             <Link to="/">Login</Link>
         </div>
