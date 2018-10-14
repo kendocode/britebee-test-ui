@@ -1,0 +1,10 @@
+{
+  "clean_urls": true,
+  "logging": {
+      "error": "info"
+  },
+  "root": "build/",
+  "routes": {
+      "/**": "index.html"
+  }
+}
