@@ -6,12 +6,5 @@
   "root": "build/",
   "routes": {
     "/**": "index.html"
-  },
-  "headers": {
-    "/**": {
-      "Accept": "application/vnd.api.v1+json",
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*"
-    }
   }
 }
