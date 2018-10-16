@@ -19,7 +19,7 @@ export const fetchProtectedData = () => (dispatch, getState) => {
         method: 'GET',
         headers: {
             // Provide our auth token as credentials
-            Authorization: `Bearer ${authToken}`,
+            Authorization: `${authToken}`,
             Accept: 'application/vnd.api.v1+json'
         }
     })

@@ -27,7 +27,7 @@ export class HeaderBar extends React.Component {
             );
         }
     return (
-        // make card for login form
+        // TODO make nicer login form
       <div>
         <Navbar>
           <Nav>

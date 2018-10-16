@@ -1,35 +1,42 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import requiresLogin from './requires-login';
-import {fetchProtectedData} from '../actions/protected-data';
+import React from "react";
+import { connect } from "react-redux";
+import requiresLogin from "./requires-login";
+import { fetchProtectedData } from "../actions/protected-data";
+import { ListGroup, ListGroupItem } from 'reactstrap';
 
 export class Dashboard extends React.Component {
-    componentDidMount() {
-        this.props.dispatch(fetchProtectedData());
-    }
+  componentDidMount() {
+    this.props.dispatch(fetchProtectedData());
+  }
 
-    render() {
-        return (
-            <div className="dashboard">
-                <div className="dashboard-email">
-                    Email: {this.props.email}
-                </div>
-                <div className="dashboard-name">Name: {this.props.name}</div>
-                <div className="dashboard-protected-data">
-                    Protected data: {this.props.protectedData}
-                </div>
-            </div>
-        );
-    }
+//Protected data: {`${this.props.protectedData}`}
+  render() {
+    return (
+    <div>
+        <p>
+            Email: {this.props.email}
+        </p>
+        <p>
+            Name: {this.props.name}
+        </p>
+        {/* <ListGroup>
+            {this.props.protectedData}
+            <ListGroupItem>ID: {this.props.protectedData}</ListGroupItem>
+            <ListGroupItem>Desc: {this.props.protectedData}</ListGroupItem>     
+        </ListGroup> */}
+
+    </div>    
+    );
+  }
 }
 
 const mapStateToProps = state => {
-    const {currentUser} = state.auth;
-    return {
-        email: state.auth.currentUser.email,
-        name: `${currentUser.name}`,
-        protectedData: state.protectedData.data
-    };
+  const { currentUser } = state.auth;
+  return {
+    email: `${currentUser.email}`,
+    name: `${currentUser.name}`,
+    protectedData: state.protectedData
+  };
 };
 
 export default requiresLogin()(connect(mapStateToProps)(Dashboard));
