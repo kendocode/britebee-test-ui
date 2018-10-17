@@ -201,6 +201,19 @@ export function fetchBoardData() {
   return newFakeData;
 }
 
+export function fetchApiData() {
+  return fetch(`${API_BASE_URL}/fakedata`, {
+    method: "GET",
+    headers: {
+      Accept: "application.vnd.api.v1+/json",
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    mode: "cors"
+  })
+  .then(response => (response.json()))
+  .catch(err => console.log(err))
+}
+
 /* export function fetchApiData() {
   console.log("Fetching");
   return fetch(`${API_BASE_URL}/fakedata`, {
