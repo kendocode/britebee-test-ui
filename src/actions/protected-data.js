@@ -18,7 +18,7 @@ export const fetchProtectedData = () => (dispatch, getState) => {
     return fetch(`${API_BASE_URL}/projects`, {
         method: 'GET',
         headers: {
-            // Provide our auth token as credentials
+            // Must provide our auth token
             Authorization: `${authToken}`,
             Accept: 'application/vnd.api.v1+json'
         }

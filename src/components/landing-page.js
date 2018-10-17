@@ -6,9 +6,9 @@ import {APP_NAME} from '../config';
 import LoginForm from './login-form';
 
 export function LandingPage(props) {
-    // If we are logged in redirect straight to the user's dashboard
+    // If we are logged in redirect straight to the user land
     if (props.loggedIn) {
-        /* return <Redirect to="/dashboard" />; */
+        /* return <Redirect to="/boardPage" />; */
         return <Redirect to="/dashboard" />;
     }
 

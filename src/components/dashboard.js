@@ -1,15 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import requiresLogin from "./requires-login";
-import { fetchProtectedData, fetchProtectedDataSuccess, fetchProtectedDataError } from "../actions/protected-data";
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { fetchProtectedData } from "../actions/protected-data";
+//import { ListGroup, ListGroupItem } from 'reactstrap';
 
 export class Dashboard extends React.Component {
-  /* componentDidMount() {
-    this.props.dispatch(fetchProtectedDataSuccess())
-  } */
+  componentDidMount() {
+      this.props.dispatch(fetchProtectedData());
+  }
 
-//Protected data: {`${this.props.protectedData}`}
   render() {
     return (
     <div>
@@ -19,32 +18,23 @@ export class Dashboard extends React.Component {
         <p>
             Name: {this.props.name}
         </p>
-        { <ListGroup>
-            <ListGroupItem>ID: {this.props.protectedData.data}</ListGroupItem>
-            <ListGroupItem>Desc: {this.props.protectedData.data}</ListGroupItem>     
-        </ListGroup> }
-
+        <div>
+          
+        </div>
+        <div>Protected Data: {this.props.protectedData}</div>
     </div>    
     );
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    componentDidMount() {
-      console.log(this.rootNode)
-      dispatch(fetchProtectedData())
-    }
   }
 }
 
 const mapStateToProps = state => {
   const { currentUser } = state.auth;
   return {
+    // email: state.auth.currentUser.email,
     email: `${currentUser.email}`,
     name: `${currentUser.name}`,
-    protectedData: `${state.data}`
+    protectedData: state.protectedData 
   };
 };
 
-export default requiresLogin()(connect(mapStateToProps, mapDispatchToProps)(Dashboard));
+export default requiresLogin()(connect(mapStateToProps)(Dashboard));
