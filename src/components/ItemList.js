@@ -25,6 +25,7 @@ const Item = ({ id, description, isComplete, toggleItem, deleteItem }) => (
 
 class ItemList extends Component {
   componentDidMount() {
+
     this.props.fetchItems();
   }
   render() {

@@ -6,24 +6,28 @@ import ItemList from "./ItemList";
 import Message from "./Message";
 import Footer from "./Footer";
 
-class Todo extends Component {
+
+
+export class Todo extends Component {
   render() {
     return (
       <div className="Todo">
-        <Router>
+
           <div className="itemApp">
             <Message />
             <ItemForm />
             <Route path="/:filter?" render={({match}) => (
-              <ItemList filter={match.params.filter}/>
+              <ItemList filter={match.params.filter}
+              projectId={match.params.projectId} />
             )} />
             <Footer />
           </div>
-        </Router>
+
       </div>
     );
   }
 }
+
 
 
 export default requireAuth(Todo);

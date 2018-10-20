@@ -13,7 +13,11 @@ import Feature from "./components/Feature";
 import Signout from "./components/auth/Signout";
 import Signin from "./components/auth/Signin";
 import Project from "./components/Project"
+
+
 import Todo from "./components/Todo"
+
+
 
 const store = createStore(
   reducers,
@@ -31,7 +35,7 @@ ReactDOM.render(
         <Route path="/signup" component={Signup} />
         <Route path="/feature" component={Feature} />
         <Route path="/project" component={Project} />
-        <Route path="/todo" component={Todo} />
+        <Route path="/todo/:projectId" component={Todo} />
         <Route path="/signout" component={Signout} />
         <Route path="/signin" component={Signin} />
       </App>

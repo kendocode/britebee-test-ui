@@ -3,7 +3,6 @@ import * as config  from '../config'
 
 //axios.defaults.headers.common['Authorization'] = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImlkIjoxMiwiZW1haWwiOiJ3ZWRAd2VkIiwibmFtZSI6IndlZCJ9LCJleHAiOjE1Mzk5NDI3MzF9.srVVDIb9ViLrVQ6DJ04a6jB9thGnTmovuFGsUHKov3o';
 axios.defaults.headers.common['Authorization'] = localStorage.token
-axios.defaults.headers.common['Authorization'] = localStorage.token
 
 export const getProjects = () => {
     return axios.get(`${config.BASE_URL}/projects`, {
