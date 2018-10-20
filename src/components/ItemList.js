@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+/* import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchItems, toggleItem, deleteItem, getVisibleItems } from "../reducers/item";
+import { toggleItem, deleteItem, getVisibleItems } from "../reducers/item";
 
 const Item = ({ id, description, isComplete, toggleItem, deleteItem }) => (
   <li key={id}>
@@ -25,14 +25,14 @@ const Item = ({ id, description, isComplete, toggleItem, deleteItem }) => (
 
 class ItemList extends Component {
   componentDidMount() {
-
-    this.props.fetchItems();
+ 
+    //this.props.fetchItems();
   }
   render() {
     return (
       <div className="Item-List">
         <ul>
-          {this.props.items.map(item => (
+          {items.map(item => (
             <Item
               key={item.id}
               toggleItem={this.props.toggleItem}
@@ -50,3 +50,4 @@ export default connect(
   (state, ownProps) => ({ items: getVisibleItems(state.item.items, ownProps.filter) }), 
   { fetchItems, toggleItem, deleteItem}
 )(ItemList);
+ */

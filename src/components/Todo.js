@@ -17,8 +17,7 @@ export class Todo extends Component {
             <Message />
             <ItemForm />
             <Route path="/:filter?" render={({match}) => (
-              <ItemList filter={match.params.filter}
-              projectId={match.params.projectId} />
+              <ItemList filter={match.params.filter} />
             )} />
             <Footer />
           </div>
