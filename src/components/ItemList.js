@@ -1,6 +1,7 @@
-/* import React, { Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import { toggleItem, deleteItem, getVisibleItems } from "../reducers/item";
+import { withRouter } from 'react-router-dom'
+import { toggleItem, deleteItem, getVisibleItems, fetchedItems } from "../reducers/item";
 
 const Item = ({ id, description, isComplete, toggleItem, deleteItem }) => (
   <li key={id}>
@@ -24,11 +25,10 @@ const Item = ({ id, description, isComplete, toggleItem, deleteItem }) => (
 // when moving from functional stateless to a class, use this.props not props
 
 class ItemList extends Component {
-  componentDidMount() {
- 
-    //this.props.fetchItems();
-  }
+  
   render() {
+    const items = this.props.location.state.itemArray
+    fetchedItems(items)
     return (
       <div className="Item-List">
         <ul>
@@ -46,8 +46,7 @@ class ItemList extends Component {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   (state, ownProps) => ({ items: getVisibleItems(state.item.items, ownProps.filter) }), 
-  { fetchItems, toggleItem, deleteItem}
-)(ItemList);
- */
+  { toggleItem, deleteItem }
+)(ItemList))

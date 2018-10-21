@@ -1,5 +1,4 @@
 import {
-  getItems,
   createItem,
   updateItem,
   destroyItem
@@ -23,18 +22,21 @@ export const addItem = item => ({ type: ITEM_ADD, payload: item });
 export const replaceItem = item => ({ type: ITEM_REPLACE, payload: item });
 export const removeItem = id => ({ type: ITEM_REMOVE, payload: id });
 
-export const fetchItems = (projectId) => {
+/* export const fetchItems = (projectId) => {
   return (dispatch) => {
     dispatch(showMessage("Loading Item List..."));
     //getItems returns promise
     getItems(projectId).then(items => dispatch(loadItems(items)));
   };
+}; */
+
+export const fetchedItems = (items) => {
+  return(dispatch) => {
+    dispatch(loadItems(items));
+  }
 };
 
-// ok for now -- FakeJSON returns the id and an endpoint for
-// full data, so when new item created just shows checkmark
-// on next full page refresh will do fetch and render all data
-// I'll have api return the full object so code is fine for now
+
 export const saveItem = description => {
   return dispatch => {
     dispatch(showMessage("Saving Item"));
