@@ -26,7 +26,8 @@ import {
     return dispatch => {
       dispatch(showMessage("Loading Project List..."));
       //getProjects returns promise
-      getProjects().then(projects => dispatch(loadProjects(projects)));
+      getProjects()
+      .then(projects => dispatch(loadProjects(projects)))
     };
   };
 

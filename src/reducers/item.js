@@ -37,16 +37,16 @@ export const fetchedItems = (items) => {
 };
 
 
-export const saveItem = description => {
+export const saveItem = (description, projectId) => {
   return dispatch => {
     dispatch(showMessage("Saving Item"));
-    createItem(description)
+    createItem(description, projectId)
       .then(response => dispatch(addItem(response)))
       .catch(error => console.log(error));
   };
 };
 
-export const toggleItem = id => {
+export const toggleItem = (id) => {
   return (dispatch, getState) => {
     dispatch(showMessage("Saving item update..."));
     const { items } = getState().item;
@@ -58,16 +58,16 @@ export const toggleItem = id => {
   };
 };
 
-export const deleteItem = id => {
+export const deleteItem = (id, project_id) => {
   return dispatch => {
     dispatch(showMessage("Removing item..."));
-    destroyItem(id)
-      .then(() => dispatch(removeItem(id)))
+    destroyItem(id, project_id)
+      .then(() => dispatch(removeItem(id, project_id)))
       .catch(error => console.log(error));
   };
 };
 
-export const getVisibleItems = (items, filter) => {
+/* export const getVisibleItems = (items, filter) => {
   switch(filter) {
     case 'active':
     return items.filter(t => !t.isComplete)
@@ -76,7 +76,7 @@ export const getVisibleItems = (items, filter) => {
     default: 
     return items
   }
-}
+} */
 
 // is clearing currentItem field here a side effect, or ok since
 // that is the state change that needs to happen?

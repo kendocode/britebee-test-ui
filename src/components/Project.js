@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { withRouter, BrowserRouter as Router, Link } from "react-router-dom";
 import requireAuth from "./requireAuth";
 import ProjectForm from "./ProjectForm";
 import ProjectList from "./ProjectList";
@@ -19,5 +19,5 @@ class Project extends Component {
   }
 }
 
-export default requireAuth(Project);
+export default withRouter(requireAuth(Project))
 // auth: { authenticated: localStorage.getProject("token") }

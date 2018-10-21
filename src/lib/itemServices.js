@@ -10,28 +10,25 @@ axios.defaults.headers.common['Authorization'] = localStorage.token
     .catch(error => console.log(error))
 } */
 
-export const createItem = (description) => {
-    return axios.post(`${BASE_URL}/projects/300/items`,
+
+export const createItem = (description, project_id) => {
+    return axios.post(`${BASE_URL}/projects/${project_id}/items`,
     { description: description, iscomplete: false})
     .then(response => response.data)
     .catch(error => console.log(error))
 }
 
-
 // would use patch to update only some fields but not necessary here
 export const updateItem = (item) => {
-    return axios.put(`${BASE_URL}/projects/300/items/${item.id}`,
-    // spread item attributes for FakeJSON
-    // only returns 204 so update only shown on refresh
-    // will need to return object from API or add find code
-    // on front end
+    return axios.put(`${BASE_URL}/projects/${item.project_id}/items/${item.id}`,
+
     { ...item })
     .then(response => response.data)
     .catch(error => console.log(error))
 }
 
-export const destroyItem = (id) => {
-    return axios.delete(`${BASE_URL}/projects/300/items/${id}`)
+export const destroyItem = (id, project_id) => {
+    return axios.delete(`${BASE_URL}/projects/${project_id}/items/${id}`)
     .then(response => response.data)
     .catch(error => console.log(error))
 }
