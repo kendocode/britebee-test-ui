@@ -8,7 +8,7 @@ class ProjectForm extends Component {
 
   handleInputChange = (evt) => {
     const val = evt.target.value
-    this.props.updateCurrent(val)
+    this.props.updateCurrentProject(val)
   }
 
   handleSubmit = (evt) => {

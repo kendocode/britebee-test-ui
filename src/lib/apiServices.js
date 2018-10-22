@@ -32,17 +32,17 @@ export const destroyProject = (id) => {
     .catch(error => console.log(error))
 }
 
-export const createItem = (description, projectId) => {
-    return axios.post(`${config.BASE_URL}/projects/${projectId}/items`,
+export const createItem = (description, project_id) => {
+    return axios.post(`${config.BASE_URL}/projects/${project_id}/items`,
     { description: description, iscomplete: false})
-    .then(response => response.data)
+    .then(response => response.data.item)
     .catch(error => console.log(error))
 }
 
 export const updateItem = (item) => {
     return axios.put(`${config.BASE_URL}/projects/${item.project_id}/items/${item.id}`,
     { ...item })
-    .then(response => response.data)
+    .then(response => response.data.item)
     .catch(error => console.log(error))
 }
 

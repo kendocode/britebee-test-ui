@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import { fetchProjects, deleteProject } from "../reducers/project";
 import Todo from './Todo'
-import ShowItems from "./ShowItems";
 
 const Project = ({ id, title, deleteProject }) => (
   <li key={id}>
@@ -42,7 +41,6 @@ class ProjectList extends Component {
           <Route
             path="/todo/:project_id"
             component={Todo}
-            //render={passedProps => <Todo props={passedProps} />}
           />
         </div>
       </Router>

@@ -11,6 +11,7 @@ import {
 const initState = {
   projects: [],
   items: [],
+  activeProjectId: 0,
   currentProject: "",
   currentItem: ""
 };
@@ -63,13 +64,19 @@ export const deleteProject = id => {
   };
 };
 
+export const ACTIVE_PROJECT_ID_SET = 'ACTIVE_PROJECT_ID_SET'
+export const setActiveProjectId = id => ({ type: ACTIVE_PROJECT_ID_SET, payload: id})
+
 const ITEMS_LOAD = "ITEMS_LOAD";
-export const loadItems = items => ({ type: ITEMS_LOAD, payload: items });
+export const loadItems = items => ({ type: ITEMS_LOAD, payload: items })
 export const setProjectItems = (project_id) => (dispatch, getState) => {
   // screw the linter -- better to use == here vs ===, otherwise you have
   // to recast the integer to string or vice versa, which you shouldn't be
   // forced to do if you're not using TypeScript. Truthy works. Quack quack.
   const items = getState().project.projects.find(p => p.id == project_id).items
+      // set active project explicitly vs reading from loaded item for case
+      // where new project created with no items -- this will always be defined
+      dispatch(setActiveProjectId(project_id))
       dispatch(loadItems(items))
       return items
   }
@@ -82,15 +89,14 @@ export const updateCurrentItem = val => ({
 });
 
 export const ITEM_ADD = "ITEM_ADD";
-export const addItem = item => ({ type: ITEM_ADD, payload: item });
-export const saveItem = (description, projectId) => {
-  return dispatch => {
-    //    dispatch(showMessage("Saving Item"));
-    createItem(description, projectId)
+export const addItem = item => ({ type: ITEM_ADD, payload: item })
+export const saveItem = (description)=> {
+  return (dispatch, getState) => {
+    createItem(description, getState().project.activeProjectId)
       .then(response => dispatch(addItem(response)))
-      .catch(error => console.log(error));
-  };
-};
+      .catch(error => console.log(error))
+  }
+}
 
 export const ITEM_REPLACE = "ITEM_REPLACE";
 export const replaceItem = item => ({ type: ITEM_REPLACE, payload: item });
@@ -142,19 +148,22 @@ export default (state = initState, action) => {
         ...state,
         projects: state.projects.filter(p => p.id !== action.payload)
       };
+      case ACTIVE_PROJECT_ID_SET:
+        return {
+          ...state,
+          activeProjectId: action.payload
+        }
     case ITEMS_LOAD:
       return {
         ...state,
         items: action.payload
       };
     case ITEM_ADD:
+    // payload = item
       return {
         ...state,
         currentItem: "",
-        projects: state.projects
-          .find(p => p.id === action.payload.project_id)
-          .concat(action.payload)
-        //items: state.items.concat(action.payload)
+        items: state.items.concat(action.payload)
       };
     case CURRENT_ITEM_UPDATE:
       return { ...state, currentItem: action.payload };
@@ -163,7 +172,7 @@ export default (state = initState, action) => {
        return {
         ...state,
         items: state.items.map(
-          i => (i.id === action.payload.item.id ? action.payload.item : i)
+          i => (i.id === action.payload.id ? action.payload : i)
         )
       };
     case ITEM_REMOVE:
