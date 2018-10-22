@@ -30,7 +30,6 @@ class ItemForm extends Component {
 }
   }
 
-
 export default connect(
   (state) => ({currentItem: state.project.currentItem}),
   {updateCurrentItem, saveItem}

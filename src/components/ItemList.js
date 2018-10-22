@@ -32,8 +32,9 @@ class ItemList extends Component {
   render() {
     return (
       <div className="Item-List">
+      {this.props.items.length > 0 ? (
         <ul>
-          {this.props.items.map(item => (
+           {this.props.items.map(item => (
             <Item
               key={item.id}
               toggleItem={this.props.toggleItem}
@@ -42,6 +43,10 @@ class ItemList extends Component {
             />
           ))}
         </ul>
+      ) : (
+        <h4>Hey, add some items</h4>
+      )
+  }
       </div>
     );
   }

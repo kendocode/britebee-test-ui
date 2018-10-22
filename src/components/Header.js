@@ -10,8 +10,7 @@ class Header extends Component {
         <div>
           <Redirect to="/project"></Redirect>
           <Link to="/signout">Sign Out</Link>
-          <Link to="/todo">Todos</Link>
-          <Link to="/project">Projects</Link>
+          <Link to="/project">Refresh Projects</Link>
         </div>
       );
     } else {
@@ -27,7 +26,7 @@ class Header extends Component {
   render() {
     return (
       <div className="header">
-        <Link to="/">Brightbee Todos</Link>
+        <Link to="/project">Brightbee Todos</Link>
         {this.renderLinks()}
       </div>
     );
