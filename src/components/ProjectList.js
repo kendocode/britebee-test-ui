@@ -36,6 +36,7 @@ class ProjectList extends Component {
     return (
       <Router>
         <div className="project-list">
+        {this.props.projects.length > 0 ? (
           <ul>
             {this.props.projects.map(project => (
               <Project
@@ -46,6 +47,10 @@ class ProjectList extends Component {
               />
             ))}
           </ul>
+        ) : (
+          <h4> Hey, add some projects </h4>
+        )
+      }
           <Route path="/todo/:project_id" component={Todo} />
         </div>
       </Router>
