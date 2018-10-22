@@ -20,5 +20,4 @@ class ShowItems extends Component {
 }
 
 export default withRouter(
-  connect(state => ({ items: state.project.items }))(ShowItems)
-);
+  connect(state => ({ items: state.project.items })(ShowItems)));
