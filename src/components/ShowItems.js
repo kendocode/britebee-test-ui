@@ -4,22 +4,18 @@ import { withRouter } from "react-router-dom";
 import { setProjectItems } from "../reducers/project";
 
 class ShowItems extends Component {
-
-    componentDidMount() {
-//        console.log(this.props)
-this.props.dispatch(setProjectItems(this.props.match.params.project_id))
-    }
-
-        render() {
-        return (
+  render() {
+    const items = this.props.dispatch(
+        setProjectItems(this.props.match.params.project_id)
+      );
+    return (
       <h1>
-          Items will go here
-          {/*getProjectItems(this.props.match.params.project_id)*/}
+        Items will go here
+        {items.map( item => <h2>{item.description}</h2>)}
       </h1>
     );
   }
 }
-
 
 /* const mapStateToProps = (state, ownProps) => (
 setProjectItems(state, ownProps.match.params.project_id)) */
@@ -28,4 +24,4 @@ setProjectItems(state, ownProps.match.params.project_id)) */
     setProjectItems(state, ownProps.match.params.project_id) 
     ) */
 
-export default withRouter(connect()(ShowItems))
+export default withRouter(connect()(ShowItems));

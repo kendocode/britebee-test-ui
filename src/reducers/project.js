@@ -65,17 +65,10 @@ export const deleteProject = id => {
 
 const ITEMS_LOAD = "ITEMS_LOAD";
 export const loadItems = items => ({ type: ITEMS_LOAD, payload: items });
-
-/* export const getProjectItems = (state, project_id) {
-  const items = state.project.projects.find(p => p.id == project_id).items;
-  function(dispatch){
-    return dispatch(loadItems(items)
-  }
-  return items
-}
- */
 export const setProjectItems = (project_id) => (dispatch, getState) => {
-  debugger
+  // screw the linter -- better to use == here vs ===, otherwise you have
+  // to recast the integer to string or vice versa, which you shouldn't be
+  // forced to do if you're not using TypeScript. Truthy works. Quack quack.
   const items = getState().project.projects.find(p => p.id == project_id).items
       dispatch(loadItems(items))
       return items
@@ -150,7 +143,6 @@ export default (state = initState, action) => {
         projects: state.projects.filter(p => p.id !== action.payload)
       };
     case ITEMS_LOAD:
-debugger
       return {
         ...state,
         items: action.payload
