@@ -31,7 +31,6 @@ ReactDOM.render(
         <Route exact path="/" component={Welcome} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/project" component={Project} />
-
         <Route path="/signout" component={Signout} />
         <Route path="/signin" component={Signin} />
       </App>

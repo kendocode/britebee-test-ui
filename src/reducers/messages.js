@@ -1,4 +1,4 @@
-import { ITEM_ADD, ITEMS_LOAD, ITEM_REPLACE, ITEM_REMOVE } from "./item";
+/* import { ITEM_ADD, ITEM_REPLACE, ITEM_REMOVE } from "./project";
 
 const MESSAGE_SHOW = "MESSAGE_SHOW";
 
@@ -10,8 +10,6 @@ export default function(state = "", action) {
       return action.payload;
     case ITEM_ADD:
       return "";
-    case ITEMS_LOAD:
-      return "";
     case ITEM_REPLACE:
       return "";
       case ITEM_REMOVE:
@@ -20,3 +18,4 @@ export default function(state = "", action) {
       return state;
   }
 }
+ */

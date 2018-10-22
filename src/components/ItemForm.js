@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
-import { updateCurrent, saveItem } from "../reducers/item";
+import { updateCurrentItem, saveItem } from "../reducers/project";
 
 
 // needs this.props when destructured through connect
@@ -8,7 +8,7 @@ class ItemForm extends Component {
 
   handleInputChange = (evt) => {
     const val = evt.target.value
-    this.props.updateCurrent(val)
+    this.props.updateCurrentItem(val)
   }
 
   handleSubmit = (evt) => {
@@ -31,6 +31,6 @@ class ItemForm extends Component {
 
 
 export default connect(
-  (state) => ({currentItem: state.item.currentItem}),
-  {updateCurrent, saveItem}
+  (state) => ({currentItem: state.project.currentItem}),
+  {updateCurrentItem, saveItem}
 )(ItemForm)

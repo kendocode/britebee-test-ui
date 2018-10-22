@@ -7,11 +7,8 @@ import {
   BrowserRouter as Router
 } from "react-router-dom";
 import { fetchProjects, deleteProject } from "../reducers/project";
-import { fetchedItems } from "../reducers/item"
-import ItemList from './ItemList'
-import Todo from './Todo'
-import requireAuth from "./requireAuth";
-import Message from "./Message";
+//import Todo from './Todo'
+import ShowItems from './ShowItems'
 
 const Project = ({ id, title, deleteProject }) => (
   <li key={id}>
@@ -33,13 +30,7 @@ class ProjectList extends Component {
         <div className="project-list">
           <ul>
             {this.props.projects.map(project => (
-              <Link
-                to={{
-                  pathname: `/todo/${project.id}`,
-                  state: { itemArray: project.items }
-                }}
-                onClick={() => this.props.fetchedItems(project.items)}
-              >
+              <Link to={`/todo/${project.id}`}>
                 <Project
                   key={project.id}
                   deleteProject={this.props.deleteProject}
@@ -50,7 +41,7 @@ class ProjectList extends Component {
           </ul>
           <Route
             path="/todo/:project_id"
-            component={Todo}
+            component={ShowItems}
             //render={passedProps => <Todo props={passedProps} />}
           />
         </div>
@@ -62,6 +53,6 @@ class ProjectList extends Component {
 export default withRouter(
   connect(
     state => ({ projects: state.project.projects }),
-    { fetchProjects, deleteProject, fetchedItems }
+   { fetchProjects, deleteProject }
   )(ProjectList)
 );

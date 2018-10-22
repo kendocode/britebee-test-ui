@@ -1,21 +1,31 @@
-
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import requireAuth from './requireAuth';
-
-
+import { setProjectItems } from "../reducers/project";
 
 class ShowItems extends Component {
 
-  render() {
-      const items = this.props.location.state.itemArray
-    return (
-        <h1>gonna show me some items!
-        {items.map(
-            item => <p>{item.id}</p>
-        )}</h1>
-     )
+    componentDidMount() {
+//        console.log(this.props)
+this.props.dispatch(setProjectItems(this.props.match.params.project_id))
+    }
+
+        render() {
+        return (
+      <h1>
+          Items will go here
+          {/*getProjectItems(this.props.match.params.project_id)*/}
+      </h1>
+    );
   }
 }
 
-export default withRouter(requireAuth(ShowItems))
+
+/* const mapStateToProps = (state, ownProps) => (
+setProjectItems(state, ownProps.match.params.project_id)) */
+
+/* const mapDispatchToProps = (state, ownProps) => (
+    setProjectItems(state, ownProps.match.params.project_id) 
+    ) */
+
+export default withRouter(connect()(ShowItems))

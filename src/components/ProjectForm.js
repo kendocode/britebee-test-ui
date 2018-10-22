@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux'
-import { updateCurrent, saveProject } from "../reducers/project";
+import { updateCurrentProject, saveProject } from "../reducers/project";
 
 
 // needs this.props when destructured through connect
@@ -32,5 +32,5 @@ class ProjectForm extends Component {
 
 export default connect(
   (state) => ({currentProject: state.project.currentProject}),
-  {updateCurrent, saveProject}
+  {updateCurrentProject, saveProject}
 )(ProjectForm)

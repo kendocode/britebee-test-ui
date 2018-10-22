@@ -1,7 +1,6 @@
 import axios from 'axios'
 import * as config  from '../config'
 
-//axios.defaults.headers.common['Authorization'] = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImlkIjoxMiwiZW1haWwiOiJ3ZWRAd2VkIiwibmFtZSI6IndlZCJ9LCJleHAiOjE1Mzk5NDI3MzF9.srVVDIb9ViLrVQ6DJ04a6jB9thGnTmovuFGsUHKov3o';
 axios.defaults.headers.common['Authorization'] = localStorage.token
 
 export const getProjects = () => {
@@ -20,14 +19,8 @@ export const createProject = (title) => {
     .catch(error => console.log(error))
 }
 
-
-// would use patch to update only some fields but not necessary here
 export const updateProject = (project) => {
     return axios.put(`${config.BASE_URL}/projects/${project.id}`,
-    // spread item attributes for FakeJSON
-    // only returns 204 so update only shown on refresh
-    // will need to return object from API or add find code
-    // on front end
     { ...project })
     .then(response => response.data)
     .catch(error => console.log(error))
@@ -35,6 +28,26 @@ export const updateProject = (project) => {
 
 export const destroyProject = (id) => {
     return axios.delete(`${config.BASE_URL}/projects/${id}`)
+    .then(response => response.data)
+    .catch(error => console.log(error))
+}
+
+export const createItem = (description, projectId) => {
+    return axios.post(`${config.BASE_URL}/projects/${projectId}/items`,
+    { description: description, iscomplete: false})
+    .then(response => response.data)
+    .catch(error => console.log(error))
+}
+
+export const updateItem = (item, projectId) => {
+    return axios.put(`${config.BASE_URL}/projects/${projectId}/items/${item.id}`,
+    { ...item })
+    .then(response => response.data)
+    .catch(error => console.log(error))
+}
+
+export const destroyItem = (id, projectId) => {
+    return axios.delete(`${config.BASE_URL}/projects/${projectId}/items/${id}`)
     .then(response => response.data)
     .catch(error => console.log(error))
 }

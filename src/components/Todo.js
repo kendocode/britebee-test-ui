@@ -1,17 +1,18 @@
 import React, { Component } from "react";
-import { withRouter, Route } from "react-router-dom";
-import requireAuth from "./requireAuth";
+import { withRouter } from "react-router-dom";
 import ItemForm from "./ItemForm";
 import ItemList from "./ItemList";
-import Message from "./Message";
-import Footer from "./Footer";
+//import Message from "./Message";
+//import Footer from "./Footer";
 
+
+// presentation container
 export class Todo extends Component {
   render() {
     return (
       <div className="Todo">
         <div className="itemApp">
-          <Message />
+
           <ItemForm />
           {/*             <Route path="/:filter?" render={({match}) => (
               <ItemList />
@@ -23,4 +24,4 @@ export class Todo extends Component {
   }
 }
 
-export default withRouter(requireAuth(Todo));
+export default withRouter(Todo);
