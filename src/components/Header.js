@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import {withRouter, Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './HeaderStyle.css';
 
@@ -37,4 +37,4 @@ function mapStateToProps(state) {
   return { authenticated: state.auth.authenticated };
 }
 
-export default connect(mapStateToProps)(Header);
+export default (connect(mapStateToProps)(Header);
