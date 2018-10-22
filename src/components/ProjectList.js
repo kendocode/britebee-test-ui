@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
   withRouter,
+  Switch,
   Route,
   Link,
   BrowserRouter as Router
@@ -36,21 +37,22 @@ class ProjectList extends Component {
     return (
       <Router>
         <div className="project-list">
-        {this.props.projects.length > 0 ? (
-          <ul>
-            {this.props.projects.map(project => (
-              <Project
-                key={project.id}
-                toggleProject={this.props.toggleProject}
-                deleteProject={this.props.deleteProject}
-                {...project}
-              />
-            ))}
-          </ul>
-        ) : (
-          <h4> Hey, add some projects </h4>
-        )
-      }
+          {this.props.projects.length > 0 ? (
+            <ul>
+              <Switch>
+                {this.props.projects.map(project => (
+                  <Project
+                    key={project.id}
+                    toggleProject={this.props.toggleProject}
+                    deleteProject={this.props.deleteProject}
+                    {...project}
+                  />
+                ))}
+              </Switch>
+            </ul>
+          ) : (
+            <h4> Hey, add some projects </h4>
+          )}
           <Route path="/todo/:project_id" component={Todo} />
         </div>
       </Router>

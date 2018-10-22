@@ -6,6 +6,7 @@ import reduxThunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import logger from 'redux-logger'
 import { BrowserRouter, Route } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.css';
 import reducers from "./reducers/index";
 import App from "./components/App";
 import Welcome from "./components/Welcome";
