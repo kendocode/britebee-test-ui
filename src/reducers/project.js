@@ -2,6 +2,7 @@ import {
   getProjects,
   createProject,
   destroyProject,
+  updateProject,
   createItem,
   updateItem,
   destroyItem
@@ -40,24 +41,33 @@ export const PROJECT_ADD = "PROJECT_ADD";
 export const addProject = project => ({ type: PROJECT_ADD, payload: project });
 export const saveProject = title => {
   return dispatch => {
-    //    dispatch(showMessage("Saving Project"));
     createProject(title)
       .then(response => dispatch(addProject(response)))
       .catch(error => console.log(error));
   };
 };
 
-export const PROJECT_REPLACE = "PROJECT_REPLACE";
-export const replaceProject = project => ({
-  type: PROJECT_REPLACE,
+export const PROJECT_PATCH = "PROJECT_PATCH";
+export const patchProject = project => ({
+  type: PROJECT_PATCH,
   payload: project
 });
+export const toggleProject = id => {
+  return (dispatch, getState) => {
+    const projects = getState().project.projects
+    const project = projects.find(p => p.id === id);
+    const toggled = { ...project, isComplete: !project.isComplete };
+    updateProject(toggled.id, toggled.isComplete)
+      .then(response => dispatch(patchProject(response)))
+      .catch(error => console.log(error));
+  };
+};
+
 
 export const PROJECT_REMOVE = "PROJECT_REMOVE";
 export const removeProject = id => ({ type: PROJECT_REMOVE, payload: id });
 export const deleteProject = id => {
   return dispatch => {
-    //    dispatch(showMessage("Removing project..."));
     destroyProject(id)
       .then(() => dispatch(removeProject(id)))
       .catch(error => console.log(error));
@@ -136,7 +146,8 @@ export default (state = initState, action) => {
       return { ...state, currentProject: action.payload };
     case PROJECTS_LOAD:
       return { ...state, projects: action.payload };
-    case PROJECT_REPLACE:
+    case PROJECT_PATCH:
+    // payload = project
       return {
         ...state,
         projects: state.projects.map(

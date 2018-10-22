@@ -6,15 +6,24 @@ import {
   Link,
   BrowserRouter as Router
 } from "react-router-dom";
-import { fetchProjects, deleteProject } from "../reducers/project";
-import Todo from './Todo'
+import {
+  fetchProjects,
+  deleteProject,
+  toggleProject
+} from "../reducers/project";
+import Todo from "./Todo";
 
-const Project = ({ id, title, deleteProject }) => (
+const Project = ({ id, title, isComplete, deleteProject, toggleProject }) => (
   <li key={id}>
     <span className="delete-project">
       <button onClick={() => deleteProject(id)}>X</button>
     </span>
-    {title}
+    <input
+      type="checkbox"
+      checked={isComplete}
+      onChange={() => toggleProject(id)}
+    />
+    <Link to={`/todo/${id}`}>{title}</Link>
   </li>
 );
 
@@ -29,19 +38,15 @@ class ProjectList extends Component {
         <div className="project-list">
           <ul>
             {this.props.projects.map(project => (
-              <Link to={`/todo/${project.id}`}>
-                <Project
-                  key={project.id}
-                  deleteProject={this.props.deleteProject}
-                  {...project}
-                />
-              </Link>
+              <Project
+                key={project.id}
+                toggleProject={this.props.toggleProject}
+                deleteProject={this.props.deleteProject}
+                {...project}
+              />
             ))}
           </ul>
-          <Route
-            path="/todo/:project_id"
-            component={Todo}
-          />
+          <Route path="/todo/:project_id" component={Todo} />
         </div>
       </Router>
     );
@@ -51,6 +56,6 @@ class ProjectList extends Component {
 export default withRouter(
   connect(
     state => ({ projects: state.project.projects }),
-    { fetchProjects, deleteProject }
+    { fetchProjects, deleteProject, toggleProject }
   )(ProjectList)
 );

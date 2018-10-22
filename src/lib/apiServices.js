@@ -19,10 +19,10 @@ export const createProject = (title) => {
     .catch(error => console.log(error))
 }
 
-export const updateProject = (project) => {
-    return axios.put(`${config.BASE_URL}/projects/${project.id}`,
-    { ...project })
-    .then(response => response.data)
+export const updateProject = (project_id, isComplete) => {
+    return axios.patch(`${config.BASE_URL}/projects/${project_id}`,
+    {isComplete: isComplete})
+    .then(response => response.data.project)
     .catch(error => console.log(error))
 }
 
