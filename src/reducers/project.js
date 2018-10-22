@@ -137,10 +137,11 @@ export const deleteItem = (id, project_id) => {
 export default (state = initState, action) => {
   switch (action.type) {
     case PROJECT_ADD:
+    const newProject = { id: action.payload.id, title: action.payload.title, isComplete: false, items: []}
       return {
         ...state,
         currentProject: "",
-        projects: state.projects.concat(action.payload)
+        projects: state.projects.concat(newProject)
       };
     case CURRENT_PROJECT_UPDATE:
       return { ...state, currentProject: action.payload };

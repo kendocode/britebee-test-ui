@@ -21,7 +21,8 @@ class ItemForm extends Component {
   
   return (
     <form onSubmit={this.handleSubmit}>
-      <input type="text" 
+      <input type="text"
+      placeholder="Add a todo item" 
       onChange={this.handleInputChange}
       value={currentItem} />
     </form>

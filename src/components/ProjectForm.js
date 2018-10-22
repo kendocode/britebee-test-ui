@@ -21,7 +21,8 @@ class ProjectForm extends Component {
   
   return (
     <form onSubmit={this.handleSubmit}>
-      <input type="text" 
+      <input type="text"
+      placeholder="Add a project..." 
       onChange={this.handleInputChange}
       value={currentProject} />
     </form>

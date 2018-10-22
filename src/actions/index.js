@@ -5,7 +5,7 @@ import { AUTH_USER, AUTH_ERROR } from './types';
 export const signup = (formProps, callback) => async dispatch => {
   try {
     const response = await axios.post(
-      config.signinUrl,
+      config.signupUrl,
       formProps
     );
 

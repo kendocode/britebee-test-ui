@@ -2,6 +2,8 @@ import axios from 'axios'
 import * as config  from '../config'
 
 axios.defaults.headers.common['Authorization'] = localStorage.token
+// later get token from state using getState and pass to each
+// authorized request
 
 export const getProjects = () => {
     return axios.get(`${config.BASE_URL}/projects`, {
@@ -13,7 +15,7 @@ export const getProjects = () => {
 
 export const createProject = (title) => {
     return axios.post(`${config.BASE_URL}/projects`,{
-        headers: { accept: `${config.acceptHeader}` },
+        headers: { accept: `${config.acceptHeader}`},
         data: { title: title }})
     .then(response => response.data.project)
     .catch(error => console.log(error))
