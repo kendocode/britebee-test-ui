@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import requireAuth from './requireAuth'
 import ItemForm from "./ItemForm";
 import ItemList from "./ItemList";
 //import Message from "./Message";
@@ -24,4 +25,4 @@ export class Todo extends Component {
   }
 }
 
-export default withRouter(Todo);
+export default withRouter(requireAuth(Todo))

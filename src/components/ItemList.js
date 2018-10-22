@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { toggleItem, deleteItem } from "../reducers/project";
+import { toggleItem, deleteItem, setProjectItems} from "../reducers/project";
 
 const Item = ({
   id,
@@ -26,11 +26,14 @@ const Item = ({
 
 
 class ItemList extends Component {
+  componentDidMount() {
+    this.props.setProjectItems(this.props.match.params.project_id);
+  }
   render() {
     return (
       <div className="Item-List">
         <ul>
-          {this.location.state.itemArrary.map(item => (
+          {this.props.items.map(item => (
             <Item
               key={item.id}
               toggleItem={this.props.toggleItem}
@@ -45,15 +48,6 @@ class ItemList extends Component {
 }
 
 export default  withRouter(
-  connect(
-    state => ({items: state.item.items}),
-    { toggleItem, deleteItem }
-  )(ItemList)
+  connect(state => ({ items: state.project.items }),
+  {toggleItem, deleteItem, setProjectItems})(ItemList)
 )
-
-
-
-/*     (state, ownProps) => ({
-      items: getVisibleItems(state.item.items, ownProps.filter)
-    }),
- */

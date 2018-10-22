@@ -97,7 +97,7 @@ export const replaceItem = item => ({ type: ITEM_REPLACE, payload: item });
 export const toggleItem = id => {
   return (dispatch, getState) => {
     //    dispatch(showMessage("Saving item update..."));
-    const { items } = getState().item;
+    const items = getState().project.items;
     const item = items.find(t => t.id === id);
     const toggled = { ...item, isComplete: !item.isComplete };
     updateItem(toggled)
@@ -159,22 +159,18 @@ export default (state = initState, action) => {
     case CURRENT_ITEM_UPDATE:
       return { ...state, currentItem: action.payload };
     case ITEM_REPLACE:
-      return {
+    // payload = item
+       return {
         ...state,
-        projects: state.projects
-          .find(p => p.id === action.payload.project_id)
-          .items.map(i => (i.id === action.payload.id ? action.payload : i))
-        /* items: state.items.map(
-          i => (i.id === action.payload.id ? action.payload : i)
-        ) */
+        items: state.items.map(
+          i => (i.id === action.payload.item.id ? action.payload.item : i)
+        )
       };
     case ITEM_REMOVE:
+    //payload = id
       return {
         ...state,
-        projects: state.projects
-          .find(p => p.id === action.payload.project_id)
-          .items.filter(i => i.id !== action.payload)
-        //items: state.items.filter(i => i.id !== action.payload)
+         items: state.items.filter(i => i.id !== action.payload)
       };
     default:
       return state;

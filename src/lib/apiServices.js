@@ -39,8 +39,8 @@ export const createItem = (description, projectId) => {
     .catch(error => console.log(error))
 }
 
-export const updateItem = (item, projectId) => {
-    return axios.put(`${config.BASE_URL}/projects/${projectId}/items/${item.id}`,
+export const updateItem = (item) => {
+    return axios.put(`${config.BASE_URL}/projects/${item.project_id}/items/${item.id}`,
     { ...item })
     .then(response => response.data)
     .catch(error => console.log(error))

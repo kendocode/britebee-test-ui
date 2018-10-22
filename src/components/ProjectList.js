@@ -7,8 +7,8 @@ import {
   BrowserRouter as Router
 } from "react-router-dom";
 import { fetchProjects, deleteProject } from "../reducers/project";
-//import Todo from './Todo'
-import ShowItems from './ShowItems'
+import Todo from './Todo'
+import ShowItems from "./ShowItems";
 
 const Project = ({ id, title, deleteProject }) => (
   <li key={id}>
@@ -41,7 +41,7 @@ class ProjectList extends Component {
           </ul>
           <Route
             path="/todo/:project_id"
-            component={ShowItems}
+            component={Todo}
             //render={passedProps => <Todo props={passedProps} />}
           />
         </div>
@@ -53,6 +53,6 @@ class ProjectList extends Component {
 export default withRouter(
   connect(
     state => ({ projects: state.project.projects }),
-   { fetchProjects, deleteProject }
+    { fetchProjects, deleteProject }
   )(ProjectList)
 );

@@ -5,10 +5,9 @@ import auth from './auth';
 import projectReducer from "./project"
 
 
-
-export default combineReducers({
+ export default combineReducers({
   auth,
   form: formReducer,
-//  message: messageReducer,
   project: projectReducer
 });
+ 
